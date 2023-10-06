@@ -70,13 +70,14 @@ a {
 .container {
   display: flex;
   flex-direction: row;
-  min-height: calc(100vh - 6.4rem);
+  height: calc(100vh - 6.4rem);
 }
 
 .content-wrapper {
   background-color: #f2f8f9;
   flex: 1;
   padding: 2rem 3.6rem 1.6rem 3.6rem;
+  overflow-y: scroll;
 }
 
 .content {
@@ -88,5 +89,12 @@ a {
 h1 {
   font-size: 2.6rem;
   font-weight: 500;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -3,7 +3,7 @@
     <nav>
       <div class="navbar-brand">
         <router-link to="/">
-          <img src="../../assets/logo_vieface.jpg" alt="brand" />
+          <img src="../../assets/logo.png" alt="brand" />
         </router-link>
       </div>
       <div class="navbar-user">

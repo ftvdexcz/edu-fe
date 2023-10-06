@@ -1,0 +1,13 @@
+.el-input__wrapper {
+  border-radius: unset;
+}
+
+.el-date-editor.el-input,
+.el-select {
+  width: 40%;
+}
+
+.el-button > span {
+  font-weight: 400;
+  color: white;
+}
