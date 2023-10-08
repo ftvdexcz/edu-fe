@@ -1,11 +1,14 @@
 <template>
   <div class="main">
-    <el-backtop
-      :right="25"
-      :bottom="50"
-      v-show="scrollIsVisible"
-      @click="scroll"
-    />
+    <div v-if="scrollIsVisible">
+      <el-backtop
+        :right="25"
+        :bottom="50"
+        :visibility-height="0"
+        @click="scroll"
+      />
+    </div>
+
     <the-header></the-header>
     <div class="container">
       <the-navigation></the-navigation>
@@ -19,9 +22,9 @@
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue';
-import TheNavigation from './components/layout/TheNavigation.vue';
-import { ref, watch } from 'vue';
+import TheHeader from '@/components/layout/TheHeader.vue';
+import TheNavigation from '@/components/layout/TheNavigation.vue';
+import { onMounted, ref } from 'vue';
 import { ElBacktop } from 'element-plus';
 
 export default {
@@ -34,13 +37,16 @@ export default {
       content.value.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    watch(content, function (val) {
-      console.log(val);
-      if (val > 200) {
-        scrollIsVisible.value = true;
-      } else {
-        scrollIsVisible.value = false;
-      }
+    onMounted(() => {
+      // không dùng watch được vì content.value không phải ref, dùng toRef thì ban đầu content là null -> error
+      content.value.addEventListener('scroll', () => {
+        console.log(content.value.scrollTop);
+        if (content.value.scrollTop > 360) {
+          scrollIsVisible.value = true;
+        } else {
+          scrollIsVisible.value = false;
+        }
+      });
     });
 
     return {
