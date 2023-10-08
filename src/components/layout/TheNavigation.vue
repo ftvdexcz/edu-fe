@@ -26,7 +26,7 @@
           <CalendarDaysIcon></CalendarDaysIcon>
         </nav-item>
 
-        <nav-item to="/weekly-report" title="Báo cáo theo tuần" pl>
+        <nav-item to="/daily-report" title="Báo cáo theo ngày" pl>
           <CalendarIcon></CalendarIcon>
         </nav-item>
 

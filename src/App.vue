@@ -1,9 +1,15 @@
 <template>
   <div class="main">
+    <el-backtop
+      :right="25"
+      :bottom="50"
+      v-show="scrollIsVisible"
+      @click="scroll"
+    />
     <the-header></the-header>
     <div class="container">
       <the-navigation></the-navigation>
-      <div class="content-wrapper">
+      <div class="content-wrapper" ref="content">
         <div class="content">
           <router-view></router-view>
         </div>
@@ -15,9 +21,34 @@
 <script>
 import TheHeader from './components/layout/TheHeader.vue';
 import TheNavigation from './components/layout/TheNavigation.vue';
+import { ref, watch } from 'vue';
+import { ElBacktop } from 'element-plus';
 
 export default {
-  components: { TheHeader, TheNavigation },
+  components: { TheHeader, TheNavigation, ElBacktop },
+  setup() {
+    const content = ref(null);
+    const scrollIsVisible = ref(false);
+
+    function scroll() {
+      content.value.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    watch(content, function (val) {
+      console.log(val);
+      if (val > 200) {
+        scrollIsVisible.value = true;
+      } else {
+        scrollIsVisible.value = false;
+      }
+    });
+
+    return {
+      scroll,
+      content,
+      scrollIsVisible,
+    };
+  },
 };
 </script>
 

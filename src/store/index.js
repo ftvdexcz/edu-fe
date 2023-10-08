@@ -104,6 +104,56 @@ export default createStore({
           time: '09:00:00',
           status: 'Đi muộn',
         },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
+        {
+          date: '2023-10-04',
+          time: '09:00:00',
+          status: 'Đi muộn',
+        },
       ],
     };
   },

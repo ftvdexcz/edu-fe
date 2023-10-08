@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
 import IdentifiedReport from '../views/IdentifiedReport.vue';
-import OrganizationManager from '../views/OrganizationManager.vue';
+import DailyReport from '../views/DailyReport.vue';
 import MonthlyReport from '../views/MonthlyReport.vue';
 
 const router = createRouter({
@@ -20,8 +20,8 @@ const router = createRouter({
       component: MonthlyReport,
     },
     {
-      path: '/organization',
-      component: OrganizationManager,
+      path: '/daily-report',
+      component: DailyReport,
     },
     {
       path: '/users',

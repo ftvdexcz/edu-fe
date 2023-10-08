@@ -18,8 +18,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.test {
-  height: 1000px;
-}
-</style>
+<style scoped></style>
