@@ -58,10 +58,14 @@ svg {
   height: 1.7rem;
   width: 1.7rem;
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .navbar-dropdown {
-  position: relative;
   margin-left: 2.4rem;
+  line-height: 1;
+  position: relative;
+  cursor: pointer;
 }
 </style>
