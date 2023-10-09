@@ -49,11 +49,11 @@
     >
       <template #default="scope">
         <div v-if="scope.row.status === 1">
-          <p style="color: #00ce68">Đã duyệt</p>
-          <p>({{ scope.row.approver }})</p>
+          <el-button class="status-tag" color="#00ce68">Đã Duyệt</el-button>
+          <p class="approver">({{ scope.row.approver }})</p>
         </div>
         <div v-else>
-          <el-button type="danger">Duyệt</el-button>
+          <el-button class="status-tag" color="#f56c6c">Duyệt</el-button>
         </div>
       </template>
     </el-table-column>
@@ -78,3 +78,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.approver {
+  margin: 0.6rem 0;
+}
+
+.status-tag {
+  width: 6.6rem;
+}
+</style>
