@@ -2,10 +2,14 @@
   <report-filter>
     <template #default>
       <div class="form-controll">
-        <label for="period">Kì Học</label>
-        <el-select id="period" v-model="period" placeholder="Chọn kì">
+        <label for="name">Tên</label>
+        <el-input v-model="usernameInput" style="width: 50%"></el-input>
+      </div>
+      <div class="form-controll">
+        <label for="major">Khoa</label>
+        <el-select id="major" v-model="major" placeholder="Chọn khoa">
           <el-option
-            v-for="item in ['Kì 1', 'Kì 2', 'Kì 3']"
+            v-for="item in ['CNTT', 'ĐTVT', 'ATTT']"
             :key="item"
             :label="item"
             :value="item"
@@ -13,12 +17,25 @@
         </el-select>
       </div>
       <div class="form-controll">
-        <label for="year">Năm</label>
+        <label for="week">Ngày bắt đầu</label>
         <el-date-picker
-          id="year"
-          v-model="monthInput"
+          v-model="daily"
+          type="date"
+          placeholder="Chọn ngày"
           :disabled-date="disabledDate"
-          type="year"
+          :shortcuts="shortcuts"
+          format="DD/MM/YYYY"
+        />
+      </div>
+      <div class="form-controll">
+        <label for="week">Ngày kết thúc</label>
+        <el-date-picker
+          v-model="daily"
+          type="date"
+          placeholder="Chọn ngày"
+          :disabled-date="disabledDate"
+          :shortcuts="shortcuts"
+          format="DD/MM/YYYY"
         />
       </div>
     </template>
@@ -31,7 +48,7 @@
 </template>
 
 <script>
-import { ElDatePicker, ElSelect, ElButton } from 'element-plus';
+import { ElDatePicker, ElSelect } from 'element-plus';
 import { ref } from 'vue';
 import ReportFilter from '../../ui/ReportFilter.vue';
 
@@ -40,12 +57,12 @@ export default {
     ElDatePicker,
     ElSelect,
     ReportFilter,
-    ElButton,
   },
   setup() {
     const usernameInput = ref('');
     const monthInput = ref('');
     const period = ref('');
+    const major = ref('');
 
     const disabledDate = (time) => {
       return time.getTime() > Date.now();
@@ -55,6 +72,7 @@ export default {
       usernameInput,
       monthInput,
       period,
+      major,
 
       disabledDate,
     };

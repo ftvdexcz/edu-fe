@@ -1,21 +1,24 @@
 <template>
   <el-table
-    :data="this.$store.state.reportMonthlyData"
+    :data="this.$store.state.reportIdentifiedData"
     style="width: 100%"
     :stripe="true"
-    :cell-style="
-      function ({ row, column, rowIndex, columnIndex }) {
-        if (rowIndex === 1 && columnIndex === 1) {
-          return {
-            backgroundColor: '#fbe7c6',
-          };
-        }
-      }
-    "
     border
     size="large"
   >
     <el-table-column type="index" label="STT" min-width="90" align="center" />
+    <el-table-column
+      prop="id"
+      label="Mã"
+      min-width="180"
+      header-align="center"
+    />
+    <el-table-column
+      prop="name"
+      label="Họ tên"
+      min-width="180"
+      header-align="center"
+    />
     <el-table-column
       prop="date"
       label="Ngày"
@@ -31,26 +34,23 @@
       align="center"
     />
     <el-table-column
-      prop="permission"
-      label="Có phép"
+      prop="camera"
+      label="Camera"
       min-width="180"
       header-align="center"
       align="center"
     />
     <el-table-column
-      prop="withoutPermission"
-      label="Không phép"
       min-width="180"
+      label="Ảnh"
+      prop="image"
       header-align="center"
       align="center"
-    />
-    <el-table-column
-      prop="status"
-      min-width="180"
-      label="Trạng thái"
-      header-align="center"
-      align="center"
-    />
+    >
+      <template #default="scope">
+        {{ scope.row.image }}
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 

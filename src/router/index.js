@@ -1,8 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
-import IdentifiedReport from '../views/IdentifiedReport.vue';
-import DailyReport from '../views/DailyReport.vue';
-import MonthlyReport from '../views/MonthlyReport.vue';
+import IdentifiedReport from '@/views/IdentifiedReport.vue';
+import DailyReport from '@/views/DailyReport.vue';
+import MonthlyReport from '@/views/MonthlyReport.vue';
+import LeaveRegistration from '@/views/LeaveRegistration.vue';
+import TeacherDashboard from '@/views/TeacherDashboard.vue';
+import LeaveRequest from '@/views/LeaveRequest.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,8 +27,16 @@ const router = createRouter({
       component: DailyReport,
     },
     {
-      path: '/users',
-      component: null,
+      path: '/leave',
+      component: LeaveRegistration,
+    },
+    {
+      path: '/teachers',
+      component: TeacherDashboard,
+    },
+    {
+      path: '/requests',
+      component: LeaveRequest,
     },
   ],
 });

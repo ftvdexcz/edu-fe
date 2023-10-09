@@ -1,17 +1,8 @@
 <template>
   <el-table
-    :data="this.$store.state.reportMonthlyData"
+    :data="this.$store.state.leaveRegistrationData"
     style="width: 100%"
     :stripe="true"
-    :cell-style="
-      function ({ row, column, rowIndex, columnIndex }) {
-        if (rowIndex === 1 && columnIndex === 1) {
-          return {
-            backgroundColor: '#fbe7c6',
-          };
-        }
-      }
-    "
     border
     size="large"
   >
@@ -19,49 +10,55 @@
     <el-table-column
       prop="date"
       label="Ngày"
-      min-width="180"
+      min-width="120"
       header-align="center"
       align="center"
     />
     <el-table-column
-      prop="time"
-      label="Thời gian"
+      prop="info"
+      label="Thông tin chi tiết"
       min-width="180"
       header-align="center"
-      align="center"
     />
     <el-table-column
-      prop="permission"
-      label="Có phép"
-      min-width="180"
-      header-align="center"
-      align="center"
-    />
-    <el-table-column
-      prop="withoutPermission"
-      label="Không phép"
-      min-width="180"
+      prop="type"
+      label="Loại"
+      min-width="120"
       header-align="center"
       align="center"
     />
     <el-table-column
       prop="status"
-      min-width="180"
       label="Trạng thái"
+      min-width="120"
+      header-align="center"
+      align="center"
+    />
+    <el-table-column
+      prop="approver"
+      label="Người duyệt"
+      min-width="120"
       header-align="center"
       align="center"
     />
   </el-table>
+  <div class="pagination-actions">
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="30"
+      :page-size="10"
+    />
+  </div>
 </template>
 
 <script>
-import { ElTable } from 'element-plus';
+import { ElTable, ElPagination } from 'element-plus';
 
 export default {
   components: {
     ElTable,
+    ElPagination,
   },
 };
 </script>
-
-<style scoped></style>

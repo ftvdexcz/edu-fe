@@ -1,67 +1,77 @@
 <template>
   <el-table
-    :data="this.$store.state.reportMonthlyData"
+    :data="this.$store.state.teachers"
     style="width: 100%"
     :stripe="true"
-    :cell-style="
-      function ({ row, column, rowIndex, columnIndex }) {
-        if (rowIndex === 1 && columnIndex === 1) {
-          return {
-            backgroundColor: '#fbe7c6',
-          };
-        }
-      }
-    "
     border
     size="large"
   >
     <el-table-column type="index" label="STT" min-width="90" align="center" />
     <el-table-column
-      prop="date"
-      label="Ngày"
+      prop="id"
+      label="Mã giáo viên"
       min-width="180"
       header-align="center"
-      align="center"
     />
     <el-table-column
-      prop="time"
-      label="Thời gian"
+      prop="name"
+      label="Họ tên"
       min-width="180"
       header-align="center"
-      align="center"
     />
     <el-table-column
-      prop="permission"
-      label="Có phép"
+      label="Email"
       min-width="180"
       header-align="center"
       align="center"
+      prop="email"
     />
     <el-table-column
-      prop="withoutPermission"
-      label="Không phép"
+      label="Khoa"
       min-width="180"
       header-align="center"
       align="center"
+      prop="major"
     />
     <el-table-column
-      prop="status"
+      label="Quyền"
       min-width="180"
-      label="Trạng thái"
       header-align="center"
       align="center"
+      prop="role"
     />
+
+    <el-table-column
+      label="Hành động"
+      min-width="120"
+      header-align="center"
+      align="center"
+    >
+      <template #default>
+        <div>
+          <el-button type="danger">Xóa</el-button>
+        </div>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
 <script>
 import { ElTable } from 'element-plus';
+import { CircleCheck } from '@element-plus/icons-vue';
 
 export default {
   components: {
     ElTable,
   },
+  setup() {
+    return { CircleCheck };
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.permission {
+  line-height: 1;
+}
+</style>

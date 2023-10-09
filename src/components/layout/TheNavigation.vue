@@ -2,16 +2,16 @@
   <div>
     <nav>
       <ul>
-        <nav-item to="/organization" title="Quản lý tổ chức">
+        <nav-item to="/organization" title="Quản lý trường">
           <UserGroupIcon></UserGroupIcon>
         </nav-item>
-        <nav-item to="/users" title="Quản lý người dùng">
+        <nav-item to="/teachers" title="Quản lý giáo viên">
           <UserIcon></UserIcon>
         </nav-item>
-        <nav-item to="/cameras" title="Quản lý camera">
-          <CameraIcon></CameraIcon>
+        <nav-item to="/requests" title="Duyệt đăng ký nghỉ">
+          <CheckBadgeIcon></CheckBadgeIcon>
         </nav-item>
-        <nav-item to="/feedback" title="Phản hồi khách hàng">
+        <nav-item to="/stats" title="Thống kê theo tháng">
           <ChatBubbleLeftRightIcon></ChatBubbleLeftRightIcon>
         </nav-item>
         <nav-item to="/" title="Báo cáo">
@@ -30,8 +30,8 @@
           <CalendarIcon></CalendarIcon>
         </nav-item>
 
-        <nav-item to="/inout-report" title="Lịch sử chấm công" pl>
-          <EyeIcon></EyeIcon>
+        <nav-item to="/leave" title="Đăng ký nghỉ">
+          <DocumentMinusIcon></DocumentMinusIcon>
         </nav-item>
       </ul>
     </nav>
@@ -42,13 +42,13 @@
 import {
   UserGroupIcon,
   UserIcon,
-  CameraIcon,
+  CheckBadgeIcon,
   ChatBubbleLeftRightIcon,
   ClipboardDocumentIcon,
   ListBulletIcon,
   CalendarDaysIcon,
   CalendarIcon,
-  EyeIcon,
+  DocumentMinusIcon,
 } from '@heroicons/vue/24/outline';
 
 import NavItem from '../ui/NavItem.vue';
@@ -57,13 +57,13 @@ export default {
   components: {
     UserGroupIcon,
     UserIcon,
-    CameraIcon,
+    CheckBadgeIcon,
     ChatBubbleLeftRightIcon,
     ClipboardDocumentIcon,
     ListBulletIcon,
     CalendarDaysIcon,
     CalendarIcon,
-    EyeIcon,
+    DocumentMinusIcon,
     NavItem,
   },
 };
