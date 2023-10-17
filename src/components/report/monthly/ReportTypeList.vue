@@ -14,7 +14,7 @@
     </div>
     <div class="report-type">
       <div class="square" style="background-color: rgb(241, 241, 241)"></div>
-      <span>" Không có dữ liệu "</span>
+      <span>" Nghỉ "</span>
     </div>
     <div class="report-type">
       <div class="square" style="background-color: rgb(240, 120, 72)"></div>

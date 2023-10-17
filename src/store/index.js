@@ -1,6 +1,14 @@
 import { createStore } from 'vuex';
+import authModule from '@/store/auth/index';
+import userModule from '@/store/users/index';
+import reportMonthModule from '@/store/report-month/index';
 
 export default createStore({
+  modules: {
+    auth: authModule,
+    users: userModule,
+    reportMonth: reportMonthModule,
+  },
   state() {
     return {
       reportMonthlyData: [
@@ -229,5 +237,4 @@ export default createStore({
   getters: {},
   mutations: {},
   actions: {},
-  modules: {},
 });

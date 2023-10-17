@@ -29,3 +29,7 @@
   width: 50%;
   border-radius: unset;
 }
+
+.custom-close-button {
+  background-color: #b7babe;
+}

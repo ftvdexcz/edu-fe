@@ -18,7 +18,7 @@
           type="date"
           placeholder="Chọn ngày"
           :disabled-date="disabledDate"
-          :shortcuts="shortcuts"
+          :shortcuts="DatePickershortcuts"
           format="DD/MM/YYYY"
         />
       </div>
@@ -45,6 +45,7 @@
 import ReportFilter from '@/components/ui/ReportFilter.vue';
 import { ElInput, ElDatePicker } from 'element-plus';
 import { reactive, ref } from 'vue';
+import { DatePickershortcuts } from '@/utils/elementPlusCpn';
 
 export default {
   components: {
@@ -65,29 +66,6 @@ export default {
     const daily = ref('');
     const summary = ref(`Có mặt: ${summaryObj.present}`);
 
-    const shortcuts = [
-      {
-        text: 'Hôm nay',
-        value: new Date(),
-      },
-      {
-        text: 'Hôm qua',
-        value: () => {
-          const date = new Date();
-          date.setTime(date.getTime() - 3600 * 1000 * 24);
-          return date;
-        },
-      },
-      {
-        text: 'Tuần trước',
-        value: () => {
-          const date = new Date();
-          date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-          return date;
-        },
-      },
-    ];
-
     const disabledDate = (time) => {
       return time.getTime() > Date.now();
     };
@@ -105,7 +83,7 @@ export default {
     return {
       usernameInput,
       daily,
-      shortcuts,
+      DatePickershortcuts,
       disabledDate,
       summary,
       summaryObj,

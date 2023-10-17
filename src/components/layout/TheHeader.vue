@@ -6,21 +6,67 @@
           <img src="../../assets/logo.png" alt="brand" />
         </router-link>
       </div>
-      <div class="navbar-user">
-        <span>Xin chào, Admin123</span>
-        <span class="navbar-dropdown">
-          <ChevronDownIcon />
-        </span>
-      </div>
+
+      <el-dropdown ref="dropdown" trigger="click" size="large">
+        <div class="el-dropdown-link">
+          <div class="navbar-user" @click="showDropDown">
+            <span>Xin chào, Admin123</span>
+            <span class="navbar-dropdown">
+              <ChevronDownIcon />
+            </span>
+          </div>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="toProfile"
+              >Quản lý tài khoản</el-dropdown-item
+            >
+            <el-dropdown-item @click="logout">Đăng xuất</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </nav>
   </header>
 </template>
 
 <script>
 import { ChevronDownIcon } from '@heroicons/vue/24/solid';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 export default {
   components: {
     ChevronDownIcon,
+  },
+  setup() {
+    const dropdown = ref(null);
+    const router = useRouter();
+    const store = useStore();
+
+    const showClick = () => {
+      if (!dropdown.value) return;
+      dropdown.value.handleOpen();
+    };
+
+    const logout = () => {
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('tokens');
+
+      store.commit('auth/logout');
+      router.push('/login');
+    };
+
+    const toProfile = () => {
+      router.push('/profile');
+    };
+
+    return {
+      dropdown,
+      logout,
+      toProfile,
+
+      showClick,
+    };
   },
 };
 </script>
@@ -52,6 +98,7 @@ img {
   padding: 0 5.6rem;
   font-size: 1.4rem;
   color: white;
+  cursor: pointer;
 }
 
 svg {
@@ -66,6 +113,5 @@ svg {
   margin-left: 2.4rem;
   line-height: 1;
   position: relative;
-  cursor: pointer;
 }
 </style>

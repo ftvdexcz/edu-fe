@@ -28,7 +28,6 @@
 .form-actions {
   grid-column: span 2;
   text-align: center;
-  color: #34a06a;
 }
 
 .form-controll {

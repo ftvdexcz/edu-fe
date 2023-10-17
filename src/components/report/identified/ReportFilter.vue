@@ -23,7 +23,7 @@
           type="date"
           placeholder="Chọn ngày"
           :disabled-date="disabledDate"
-          :shortcuts="shortcuts"
+          :shortcuts="DatePickershortcuts"
           format="DD/MM/YYYY"
         />
       </div>
@@ -34,7 +34,7 @@
           type="date"
           placeholder="Chọn ngày"
           :disabled-date="disabledDate"
-          :shortcuts="shortcuts"
+          :shortcuts="DatePickershortcuts"
           format="DD/MM/YYYY"
         />
       </div>
@@ -51,6 +51,7 @@
 import { ElDatePicker, ElSelect } from 'element-plus';
 import { ref } from 'vue';
 import ReportFilter from '../../ui/ReportFilter.vue';
+import { DatePickershortcuts } from '@/utils/elementPlusCpn';
 
 export default {
   components: {
@@ -73,6 +74,7 @@ export default {
       monthInput,
       period,
       major,
+      DatePickershortcuts,
 
       disabledDate,
     };

@@ -8,6 +8,7 @@ import './assets/styles/global-element-ui.css'; // custom element ui styles
 import './assets/styles/global.css'; // global css
 import vi from 'element-plus/dist/locale/vi.mjs';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import 'dayjs/locale/vi';
 
 const app = createApp(App);
 

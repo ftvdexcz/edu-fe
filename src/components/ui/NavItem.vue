@@ -1,6 +1,10 @@
 <template>
   <li>
-    <router-link :to="to" :class="{ pl: pl }">
+    <a @click.prevent="navigation" :to="to" :href="to" v-if="isLink">
+      <slot></slot>
+      <span>{{ title }}</span>
+    </a>
+    <router-link v-else :to="to" :class="{ pl: pl }">
       <slot></slot>
       <span>{{ title }}</span>
     </router-link>
@@ -8,6 +12,8 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
   props: {
     to: {
@@ -20,6 +26,17 @@ export default {
       required: true,
     },
     pl: Boolean,
+    isLink: Boolean,
+  },
+  setup(props) {
+    const router = useRouter();
+    const navigation = () => {
+      router.push(props.to);
+    };
+
+    return {
+      navigation,
+    };
   },
 };
 </script>

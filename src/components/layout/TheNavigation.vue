@@ -14,7 +14,7 @@
         <nav-item to="/stats" title="Thống kê theo tháng">
           <ChatBubbleLeftRightIcon></ChatBubbleLeftRightIcon>
         </nav-item>
-        <nav-item to="/" title="Báo cáo">
+        <nav-item to="/" isLink title="Báo cáo">
           <ClipboardDocumentIcon></ClipboardDocumentIcon>
         </nav-item>
 

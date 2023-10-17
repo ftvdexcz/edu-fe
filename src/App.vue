@@ -1,59 +1,19 @@
 <template>
-  <div class="main">
-    <div v-if="scrollIsVisible">
-      <el-backtop
-        :right="25"
-        :bottom="50"
-        :visibility-height="0"
-        @click="scroll"
-      />
-    </div>
-
-    <the-header></the-header>
-    <div class="container">
-      <the-navigation></the-navigation>
-      <div class="content-wrapper" ref="content">
-        <div class="content">
-          <router-view></router-view>
-        </div>
-      </div>
-    </div>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
-import TheHeader from '@/components/layout/TheHeader.vue';
-import TheNavigation from '@/components/layout/TheNavigation.vue';
-import { onMounted, ref } from 'vue';
-import { ElBacktop } from 'element-plus';
+import { useStore } from 'vuex';
+import store from '@/store/index';
+import setupInterceptors from '@/services/axiosInterceptors';
+
+setupInterceptors(store);
 
 export default {
-  components: { TheHeader, TheNavigation, ElBacktop },
   setup() {
-    const content = ref(null);
-    const scrollIsVisible = ref(false);
+    const store = useStore();
 
-    function scroll() {
-      content.value.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    onMounted(() => {
-      // không dùng watch được vì content.value không phải ref, dùng toRef thì ban đầu content là null -> error
-      content.value.addEventListener('scroll', () => {
-        console.log(content.value.scrollTop);
-        if (content.value.scrollTop > 360) {
-          scrollIsVisible.value = true;
-        } else {
-          scrollIsVisible.value = false;
-        }
-      });
-    });
-
-    return {
-      scroll,
-      content,
-      scrollIsVisible,
-    };
+    store.dispatch('auth/tryLogin');
   },
 };
 </script>
