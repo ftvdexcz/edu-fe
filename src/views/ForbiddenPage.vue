@@ -1,17 +1,19 @@
 <template>
   <div class="body">
     <div class="text-wrapper">
-      <div class="title" data-content="404">404 - NOT FOUND</div>
+      <div class="title" data-content="404">403 - ACCESS DENIED</div>
 
-      <div class="subtitle">Oops, Không tìm thấy trang!</div>
+      <div class="subtitle">
+        Oops, Bạn không có quyền truy cập vào trang này!
+      </div>
       <div class="isi">
-        Một máy chủ web có thể trả về mã trạng thái HTTP 404 Not Found trong
+        Một máy chủ web có thể trả về mã trạng thái HTTP 403 Forbidden trong
         phản hồi đối với yêu cầu từ một máy khách cho một trang web hoặc tài
-        nguyên để chỉ ra rằng máy chủ không tìm thấy tài nguyên được yêu cầu. Mã
-        trạng thái 404 được sử dụng để thể hiện rằng máy chủ không thể xác định
-        hoặc không tìm thấy trang hoặc tài nguyên được yêu cầu bởi máy khách.
-        Điều này có thể xảy ra nếu URL không tồn tại, hoặc nếu tài nguyên đã bị
-        di chuyển hoặc xóa.
+        nguyên để chỉ ra rằng máy chủ có thể tiếp nhận và hiểu được yêu cầu,
+        nhưng từ chối thực hiện bất kỳ hành động nào nữa. Các phản ứng với mã
+        trạng thái 403 là kết quả của máy chủ web được cấu hình để từ chối quyền
+        truy cập, vì một số lý do nào đó, đối với tài nguyên được yêu cầu bởi
+        máy khách.
       </div>
 
       <div class="buttons">

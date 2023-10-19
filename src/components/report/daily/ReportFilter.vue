@@ -7,22 +7,31 @@
       </div>
       <div class="form-controll">
         <label for="class">Lớp</label>
-        <el-select id="class" v-model="period" placeholder="Chọn lớp">
+        <el-select id="class" v-model="cls" placeholder="Chọn lớp">
           <el-option v-for="item in []" :key="item" />
         </el-select>
       </div>
       <div class="form-controll">
-        <label for="week">Ngày</label>
+        <label for="period">Kì Học</label>
+        <el-select id="period" v-model="period" placeholder="Chọn kì">
+          <el-option
+            v-for="item in periods"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
+      <div class="form-controll">
+        <label for="year">Năm</label>
         <el-date-picker
-          v-model="daily"
-          type="date"
-          placeholder="Chọn ngày"
+          id="year"
+          v-model="year"
           :disabled-date="disabledDate"
-          :shortcuts="DatePickershortcuts"
-          format="DD/MM/YYYY"
+          type="year"
         />
       </div>
-      <div>
+      <!-- <div>
         <el-radio-group v-model="summary">
           <el-radio-button :label="'Có mặt: ' + summaryObj.present" />
           <el-radio-button :label="'Vắng: ' + summaryObj.absent" />
@@ -31,63 +40,149 @@
             :label="'Không phép: ' + summaryObj.withoutPermission"
           />
         </el-radio-group>
-      </div>
+      </div> -->
     </template>
 
     <template #actions>
       <el-button @click="search" color="#00CE68">Tìm kiếm</el-button>
-      <el-button @click="test" color="#308EE0">Xuất báo cáo</el-button>
+      <el-button color="#308EE0">Xuất báo cáo</el-button>
     </template>
   </report-filter>
 </template>
 
 <script>
 import ReportFilter from '@/components/ui/ReportFilter.vue';
-import { ElInput, ElDatePicker } from 'element-plus';
-import { reactive, ref } from 'vue';
+import { ElInput, ElSelect, ElMessage } from 'element-plus';
+import { ref } from 'vue';
+import Constant from '@/const/const';
 import { DatePickershortcuts } from '@/utils/elementPlusCpn';
+import factoryService from '@/services/factory.service';
+import helpers from '@/utils/helpers';
+import { useStore } from 'vuex';
+
+const historyService = factoryService.get('histories');
+const userService = factoryService.get('users');
+
+const reportDaily = async (store, curYear, curPeriod, name) => {
+  const days = helpers.generateDays(curYear, curPeriod);
+
+  store.commit('reportDaily/setTotalDays', days);
+
+  try {
+    const response = await historyService.reportDaily({
+      timeFrom: days[0].day.split('-').reverse().join('-'), // dd-MM-yyyy -> yyyy-MM-dd
+      timeTo: days.at(-1).day.split('-').reverse().join('-'),
+      name,
+    });
+
+    if (response.status !== 200) throw new Error('Có lỗi xảy ra');
+
+    const histories = response.data.results;
+
+    console.log(histories);
+
+    const response2 = await userService.listTeachersByRole(
+      1,
+      100000,
+      'USER',
+      name
+    );
+
+    if (response2.status !== 200) throw new Error('Có lỗi xảy ra');
+    const students = response2.data.results;
+
+    const data = students.map((s) => {
+      const obj = {
+        userName: s.name,
+        userId: s.id,
+        reports: [], // {status: null, leavePermission: 0, checkIn: null, checkOut: null, day, shift}
+      };
+
+      obj.reports = days.map((d) => {
+        const match = histories.filter(
+          (h) => helpers.formatDate(h.time) === d.day && h.user._id === s.id
+        );
+
+        if (match.length > 0) {
+          console.log('match');
+          const { status, checkIn, checkOut } = helpers.reportIdentifiedType(
+            match,
+            d.shift
+          );
+          return {
+            status,
+            leavePermission: 0,
+            checkIn,
+            checkOut,
+            day: d.day,
+            shift: d.shift,
+          };
+        } else {
+          return {
+            status: 4, // nghỉ
+            leavePermission: 0,
+            checkIn: null,
+            checkOut: null,
+            day: d.day,
+            shift: d.shift,
+          };
+        }
+      });
+
+      return obj;
+    });
+
+    console.log(data);
+
+    store.commit('reportDaily/setData', data);
+
+    console.log(store.getters['reportDaily/getData']);
+  } catch (err) {
+    console.log(err);
+    ElMessage.error(err);
+  }
+};
 
 export default {
   components: {
     ReportFilter,
-    ElDatePicker,
+    ElSelect,
     ElInput,
   },
 
   setup() {
-    const summaryObj = reactive({
-      present: 42,
-      absent: 0,
-      permission: 0,
-      withoutPermission: 0,
-    });
-
-    const usernameInput = ref('');
-    const daily = ref('');
-    const summary = ref(`Có mặt: ${summaryObj.present}`);
+    const store = useStore();
 
     const disabledDate = (time) => {
       return time.getTime() > Date.now();
     };
 
-    function search() {
-      console.log(+summary.value.split(':')[1]); // giá trị vắng, có phép, k phép ...
-    }
+    const { curYear, curPeriod } = helpers.defaultReportMonthFilter();
 
-    // Note (todo): khi fetch lại api nhớ phải set lại value của summary với giá trị mới
-    function test() {
-      summaryObj.present = 35;
-      summary.value = `Có mặt: ${summaryObj.present}`;
-    }
+    reportDaily(store, curYear, curPeriod, '');
+
+    const year = ref(curYear);
+    const period = ref(curPeriod);
+    const usernameInput = ref('');
+    const cls = ref('');
+
+    const search = () => {
+      reportDaily(
+        store,
+        new Date(year.value).getFullYear(),
+        period.value,
+        usernameInput.value
+      );
+    };
 
     return {
       usernameInput,
-      daily,
+      year,
+      period,
+      periods: Constant.periods,
       DatePickershortcuts,
+      cls,
       disabledDate,
-      summary,
-      summaryObj,
-      test,
       search,
     };
   },

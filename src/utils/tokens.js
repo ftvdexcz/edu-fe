@@ -22,4 +22,8 @@ export default {
     if (tokens) return tokens.refresh;
     return null;
   },
+
+  checkRole(curRole, needRole) {
+    return curRole === needRole;
+  },
 };

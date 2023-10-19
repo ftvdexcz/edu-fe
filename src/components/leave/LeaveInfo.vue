@@ -1,21 +1,5 @@
 <template>
-  <table class="leave-info">
-    <tr>
-      <th colspan="2">Thông tin nghỉ phép</th>
-    </tr>
-    <tr>
-      <td>Phép năm:</td>
-      <td>0</td>
-      <td>Tồn năm trước:</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>Đã sử dụng:</td>
-      <td>0</td>
-      <td>Phép còn lại:</td>
-      <td>0</td>
-    </tr>
-  </table>
+  <table class="leave-info"></table>
 </template>
 
 <style scoped>

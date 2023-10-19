@@ -18,16 +18,16 @@
           <ClipboardDocumentIcon></ClipboardDocumentIcon>
         </nav-item>
 
-        <nav-item to="/identified-report" title="Lịch sử nhận diện" pl>
-          <ListBulletIcon></ListBulletIcon>
-        </nav-item>
-
         <nav-item to="/monthly-report" title="Báo cáo theo tháng" pl>
           <CalendarDaysIcon></CalendarDaysIcon>
         </nav-item>
 
         <nav-item to="/daily-report" title="Báo cáo theo ngày" pl>
           <CalendarIcon></CalendarIcon>
+        </nav-item>
+
+        <nav-item to="/identified-report" title="Lịch sử nhận diện" pl>
+          <ListBulletIcon></ListBulletIcon>
         </nav-item>
 
         <nav-item to="/leave" title="Đăng ký nghỉ">

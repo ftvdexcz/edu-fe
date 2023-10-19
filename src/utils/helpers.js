@@ -43,38 +43,38 @@ export default {
         .date(1)
         .startOf('month')
         .day('Monday');
-      const wednesday = moment()
+      const friday = moment()
         .year(+curYear)
         .month(month)
         .date(1)
         .startOf('month')
-        .day('Wednesday');
+        .day('Friday');
 
       // .day('Monday') có thể bị lùi về tháng trước đó nên phải cộng 7 ngày
       if (monday.date() > 7) monday.add(7, 'd');
-      if (wednesday.date() > 7) wednesday.add(7, 'd');
+      if (friday.date() > 7) friday.add(7, 'd');
 
       while (monday.month() === month) {
         let m = {
           day: monday.format('DD-MM-yyyy'),
           shift: 1,
         };
-        let w = {
-          day: wednesday.format('DD-MM-yyyy'),
+        let f = {
+          day: friday.format('DD-MM-yyyy'),
           shift: 3,
         };
 
-        if (wednesday.isBefore(monday)) {
-          days.push(w);
+        if (friday.isBefore(monday)) {
+          days.push(f);
           days.push(m);
         } else {
           days.push(m);
 
-          if (wednesday.month() === month) days.push(w);
+          if (friday.month() === month) days.push(f);
         }
 
         monday.add(7, 'd');
-        wednesday.add(7, 'd');
+        friday.add(7, 'd');
       }
 
       month++;
@@ -85,6 +85,14 @@ export default {
 
   formatDate(date) {
     return moment(date).utc().format('DD-MM-yyyy');
+  },
+
+  formatTime(date) {
+    return moment(date).utc().format('HH:mm:ss');
+  },
+
+  formatDateTz(date) {
+    return moment(date).format('DD-MM-yyyy');
   },
 
   convertToSecs(time) {
@@ -141,5 +149,23 @@ export default {
       checkIn: this.convertSecsToHour(checkIn),
       checkOut: this.convertSecsToHour(checkOut),
     };
+  },
+
+  // lấy ra ngày đầu và cuối của tuần, truyền vào ngày đầu tiên lấy ra từ week datepicker
+  getWeek(date) {
+    const timeFrom = moment(date);
+
+    // Lấy ngày cuối của tuần
+    const timeTo = timeFrom.clone().endOf('isoWeek');
+
+    return {
+      timeFrom: timeFrom.format('DD-MM-yyyy'),
+      timeTo: timeTo.format('DD-MM-yyyy'),
+    };
+  },
+
+  timestampToDateString(timestamp) {
+    const formattedDate = moment(timestamp * 1000).format('DD-MM-yyyy');
+    return formattedDate;
   },
 };

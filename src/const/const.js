@@ -81,4 +81,31 @@ export default {
       end: 64800,
     },
   },
+  reasonOptions: [
+    {
+      label: 'Đi muộn',
+      value: 1,
+    },
+    {
+      label: 'Nghỉ ốm đau (có giấy từ bệnh viện)',
+      value: 2,
+    },
+    {
+      label: 'Nghỉ không lương',
+      value: 3,
+    },
+    {
+      label: 'Nghỉ phép năm',
+      value: 4,
+    },
+    {
+      label:
+        'Nghỉ chế độ (nhân sự cưới, con cưới, người thân mất, sự kiện trường)',
+      value: 5,
+    },
+    {
+      label: 'Về sớm',
+      value: 6,
+    },
+  ],
 };

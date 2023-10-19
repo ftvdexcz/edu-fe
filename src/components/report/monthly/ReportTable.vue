@@ -4,6 +4,7 @@
     style="width: 100%"
     border
     size="large"
+    stripe
   >
     <el-table-column type="index" label="STT" min-width="90" align="center" />
     <el-table-column

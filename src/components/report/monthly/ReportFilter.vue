@@ -41,7 +41,6 @@ import factoryService from '@/services/factory.service';
 
 const historyService = factoryService.get('histories');
 
-// eslint-disable-next-line no-unused-vars
 const reportMonth = async (store, curYear, curPeriod) => {
   const days = helpers.generateDays(curYear, curPeriod);
   const currentUser = store.getters['auth/getCurrentUser'];
@@ -114,7 +113,7 @@ export default {
     const period = ref(curPeriod);
 
     const search = () => {
-      reportMonth(store, year.value.getFullYear(), period.value);
+      reportMonth(store, new Date(year.value).getFullYear(), period.value);
     };
 
     return {

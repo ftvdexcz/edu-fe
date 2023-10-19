@@ -2,167 +2,21 @@ import { createStore } from 'vuex';
 import authModule from '@/store/auth/index';
 import userModule from '@/store/users/index';
 import reportMonthModule from '@/store/report-month/index';
+import reportHistoryModule from '@/store/report-history/index';
+import reportDailyModule from '@/store/report-daily/index';
+import leaveModule from '@/store/leaves/index';
 
 export default createStore({
   modules: {
     auth: authModule,
     users: userModule,
     reportMonth: reportMonthModule,
+    reportHistory: reportHistoryModule,
+    reportDaily: reportDailyModule,
+    leaves: leaveModule,
   },
   state() {
     return {
-      reportMonthlyData: [
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-        {
-          date: '2023-10-04',
-          time: '09:00:00',
-          status: 'Đi muộn',
-        },
-      ],
       reportDailyData: [
         {
           id: 'B19DCCN386',

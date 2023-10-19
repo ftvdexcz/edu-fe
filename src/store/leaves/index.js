@@ -7,6 +7,11 @@ export default {
   state() {
     return {
       data: [],
+      limit: 10,
+      totals: 1,
+
+      nameFilter: '',
+      weekFilter: null,
     };
   },
   mutations,

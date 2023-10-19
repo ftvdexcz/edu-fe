@@ -135,7 +135,6 @@ export default {
     };
 
     const handlePageChange = (val) => {
-      console.log(val);
       (async () => {
         try {
           await store.dispatch('users/listTeachersByRole', {

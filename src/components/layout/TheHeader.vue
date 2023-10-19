@@ -10,7 +10,7 @@
       <el-dropdown ref="dropdown" trigger="click" size="large">
         <div class="el-dropdown-link">
           <div class="navbar-user" @click="showDropDown">
-            <span>Xin chào, Admin123</span>
+            <span>Xin chào, </span><span>{{ username }}</span>
             <span class="navbar-dropdown">
               <ChevronDownIcon />
             </span>
@@ -43,6 +43,9 @@ export default {
     const router = useRouter();
     const store = useStore();
 
+    const user = store.getters['auth/getCurrentUser'].user;
+    const username = ref(user.name);
+
     const showClick = () => {
       if (!dropdown.value) return;
       dropdown.value.handleOpen();
@@ -64,6 +67,7 @@ export default {
       dropdown,
       logout,
       toProfile,
+      username,
 
       showClick,
     };

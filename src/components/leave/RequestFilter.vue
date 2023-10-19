@@ -23,7 +23,7 @@
     </template>
 
     <template #actions>
-      <el-button color="#00CE68">Tìm kiếm</el-button>
+      <el-button @click="search" color="#00CE68">Tìm kiếm</el-button>
       <el-button color="#308EE0">Xuất file</el-button>
     </template>
   </report-filter>
@@ -33,6 +33,7 @@
 import ReportFilter from '@/components/ui/ReportFilter.vue';
 import { ElInput } from 'element-plus';
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   components: {
@@ -41,13 +42,31 @@ export default {
   },
 
   setup() {
+    const store = useStore();
     const usernameInput = ref('');
-
     const week = ref('');
+
+    const search = () => {
+      const name = usernameInput.value ? usernameInput.value : null;
+      (async () => {
+        await store.dispatch('leaves/getLeaves', {
+          page: 1,
+          limit: 10,
+          week: week.value,
+          name,
+        });
+      })();
+
+      store.commit('leaves/setFilter', {
+        name,
+        week: week.value,
+      });
+    };
 
     return {
       usernameInput,
       week,
+      search,
     };
   },
 };

@@ -10,9 +10,12 @@ import CreateTeacher from '@/components/dashboard/teachers/CreateTeacher.vue';
 import UserAuth from '@/views/UserAuth.vue';
 import MainApp from '@/views/MainApp.vue';
 import UserProfile from '@/views/UserProfile.vue';
+import StatisticDashboard from '@/views/StatisticsDashboard.vue';
 import NotFound from '@/views/NotFound.vue';
+import Forbidden from '@/views/ForbiddenPage.vue';
 
 import store from '@/store/index';
+import tokens from '@/utils/tokens';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,11 +23,17 @@ const router = createRouter({
     {
       path: '/',
       component: MainApp,
-      redirect: 'identified-report',
+      redirect: 'monthly-report',
       children: [
         {
           path: 'identified-report',
           component: IdentifiedReport,
+          beforeEnter(to, from, next) {
+            if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN')) {
+              next();
+            }
+            next('/forbbiden');
+          },
         },
         {
           path: 'monthly-report',
@@ -33,6 +42,12 @@ const router = createRouter({
         {
           path: 'daily-report',
           component: DailyReport,
+          beforeEnter(to, from, next) {
+            if (tokens.checkRole(store.getters['auth/getRole'], 'MANAGER')) {
+              next();
+            }
+            next('/forbbiden');
+          },
         },
         {
           path: 'leave',
@@ -43,6 +58,16 @@ const router = createRouter({
           component: UserProfile,
         },
         {
+          path: 'stats',
+          component: StatisticDashboard,
+          // beforeEnter(to, from, next) {
+          //   if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN')) {
+          //     next();
+          //   }
+          //   next('/forbbiden');
+          // },
+        },
+        {
           path: 'teachers',
           component: TeacherDashboard,
           children: [
@@ -51,16 +76,32 @@ const router = createRouter({
               component: CreateTeacher,
             },
           ],
+          beforeEnter(to, from, next) {
+            if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN')) {
+              next();
+            }
+            next('/forbbiden');
+          },
         },
         {
           path: 'requests',
           component: LeaveRequest,
+          beforeEnter(to, from, next) {
+            if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN')) {
+              next();
+            }
+            next('/forbbiden');
+          },
         },
       ],
     },
     {
       path: '/login',
       component: UserAuth,
+    },
+    {
+      path: '/forbbiden',
+      component: Forbidden,
     },
     {
       path: '/:notFound(.*)',

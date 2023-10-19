@@ -33,3 +33,39 @@
 .custom-close-button {
   background-color: #b7babe;
 }
+
+/* .el-table--large .el-table__cell {
+  padding: 1px;
+} */
+
+/* report daily */
+
+.report-dialy_table .el-table--large .cell {
+  padding: 0px;
+}
+
+.report-dialy_table .el-table .cell {
+  padding: 0px;
+}
+
+.report-dialy_table .el-table--large .el-table__cell {
+  padding: 0px;
+}
+
+.report-dialy_table .el-table__row .cell div {
+  padding: 1.6rem 0;
+}
+
+.report-dialy_table table thead .cell {
+  padding: 1.2rem 0 !important;
+}
+
+.report-dialy_table table thead th {
+  background-color: #fff !important;
+  color: #000;
+}
+
+.report-dialy_table table td:not(.el-table-fixed-column--left) {
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+}

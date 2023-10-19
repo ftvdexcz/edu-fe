@@ -21,4 +21,9 @@ export default {
 
     return null;
   },
+  getRole(_, getters) {
+    const user = getters.getCurrentUser.user;
+
+    return user.role;
+  },
 };
