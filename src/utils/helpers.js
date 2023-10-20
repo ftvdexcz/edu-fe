@@ -168,4 +168,24 @@ export default {
     const formattedDate = moment(timestamp * 1000).format('DD-MM-yyyy');
     return formattedDate;
   },
+
+  getToday() {
+    return moment();
+  },
+
+  getTodayFormatted(today) {
+    return today.clone().format('DD/MM/yyyy');
+  },
+
+  getTodayFormatted2(today) {
+    return today.clone().format('yyyy-MM-DD');
+  },
+
+  backDay(today) {
+    return today.clone().subtract(1, 'days');
+  },
+
+  forwardDay(today) {
+    return today.clone().add(1, 'days');
+  },
 };

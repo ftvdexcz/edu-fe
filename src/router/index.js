@@ -38,6 +38,12 @@ const router = createRouter({
         {
           path: 'monthly-report',
           component: MonthlyReport,
+          beforeEnter(to, from, next) {
+            if (tokens.checkRole(store.getters['auth/getRole'], 'MANAGER')) {
+              next();
+            }
+            next('/forbbiden');
+          },
         },
         {
           path: 'daily-report',
@@ -60,12 +66,12 @@ const router = createRouter({
         {
           path: 'stats',
           component: StatisticDashboard,
-          // beforeEnter(to, from, next) {
-          //   if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN')) {
-          //     next();
-          //   }
-          //   next('/forbbiden');
-          // },
+          beforeEnter(to, from, next) {
+            if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN')) {
+              next();
+            }
+            next('/forbbiden');
+          },
         },
         {
           path: 'teachers',

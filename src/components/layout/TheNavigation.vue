@@ -11,7 +11,7 @@
         <nav-item to="/requests" title="Duyệt đăng ký nghỉ">
           <CheckBadgeIcon></CheckBadgeIcon>
         </nav-item>
-        <nav-item to="/stats" title="Thống kê theo tháng">
+        <nav-item to="/stats" title="Thống kê theo ngày">
           <ChatBubbleLeftRightIcon></ChatBubbleLeftRightIcon>
         </nav-item>
         <nav-item to="/" isLink title="Báo cáo">

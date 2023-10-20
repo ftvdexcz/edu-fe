@@ -69,3 +69,64 @@
   border-bottom: 1px solid #fff;
   border-right: 1px solid #fff;
 }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  row-gap: 3.2rem;
+  column-gap: 2.4rem;
+}
+
+.stats-card {
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+  padding: 1.2rem 2.4rem;
+}
+
+.stats-header,
+.stats-item {
+  height: 10rem;
+}
+
+.stats-header {
+  font-size: 2.6rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats-chart,
+.stats-table,
+.stats-header {
+  grid-column: 1/4;
+}
+
+.stats-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats-item .checked {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #007bff;
+}
+
+.stats-item .checked-stats {
+  font-size: 2.6rem;
+  text-align: right;
+}
+
+.stats-chart__wrapper {
+  display: flex;
+}
+
+.pie-chart {
+  width: 50%;
+}
+
+.line-chart {
+  width: 50%;
+}
