@@ -23,7 +23,7 @@ const router = createRouter({
     {
       path: '/',
       component: MainApp,
-      redirect: 'monthly-report',
+
       children: [
         {
           path: 'identified-report',
@@ -124,6 +124,14 @@ router.beforeEach((to, from, next) => {
     return next('/login');
   } else if (!authRequired && store.getters['auth/getTokens']) {
     return next('/');
+  }
+
+  if (to.path === '/') {
+    if (tokens.checkRole(store.getters['auth/getRole'], 'MANAGER'))
+      return next('/monthly-report');
+    if (tokens.checkRole(store.getters['auth/getRole'], 'ADMIN'))
+      return next('/identified-report');
+    return next('/forbbiden');
   }
 
   next();
