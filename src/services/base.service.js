@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseDomain = 'https://ptit.io.vn';
-const baseURL = `${baseDomain}/api/v1`;
+const baseDomain = 'http://117.6.133.148:3000';
+const baseURL = `${baseDomain}/v1`;
 
 export default axios.create({
   baseURL,

@@ -8,7 +8,12 @@
       <div class="form-controll">
         <label for="class">Lớp</label>
         <el-select id="class" v-model="cls" placeholder="Chọn lớp">
-          <el-option v-for="item in []" :key="item" />
+          <el-option
+            v-for="item in Array.from({ length: 20 }, (_, index) => index + 1)"
+            :key="item"
+            :value="item"
+            :select="1"
+          />
         </el-select>
       </div>
       <div class="form-controll">
@@ -63,7 +68,7 @@ import { useStore } from 'vuex';
 const historyService = factoryService.get('histories');
 const userService = factoryService.get('users');
 
-const reportDaily = async (store, curYear, curPeriod, name) => {
+const reportDaily = async (store, curYear, curPeriod, name, cls) => {
   const days = helpers.generateDays(curYear, curPeriod);
 
   store.commit('reportDaily/setTotalDays', days);
@@ -82,8 +87,8 @@ const reportDaily = async (store, curYear, curPeriod, name) => {
     console.log(histories);
 
     const response2 = await userService.listTeachersByRole(
-      1,
-      100000,
+      cls,
+      50,
       'USER',
       name
     );
@@ -158,20 +163,20 @@ export default {
     };
 
     const { curYear, curPeriod } = helpers.defaultReportMonthFilter();
-
-    reportDaily(store, curYear, curPeriod, '');
+    const cls = ref(1);
+    reportDaily(store, curYear, curPeriod, '', cls.value);
 
     const year = ref(curYear);
     const period = ref(curPeriod);
     const usernameInput = ref('');
-    const cls = ref('');
 
     const search = () => {
       reportDaily(
         store,
         new Date(year.value).getFullYear(),
         period.value,
-        usernameInput.value
+        usernameInput.value,
+        cls.value
       );
     };
 
