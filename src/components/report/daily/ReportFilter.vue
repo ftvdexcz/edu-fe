@@ -9,7 +9,7 @@
         <label for="class">Lớp</label>
         <el-select id="class" v-model="cls" placeholder="Chọn lớp">
           <el-option
-            v-for="item in Array.from({ length: 20 }, (_, index) => index + 1)"
+            v-for="item in Array.from({ length: 25 }, (_, index) => index + 1)"
             :key="item"
             :value="item"
             :select="1"

@@ -33,7 +33,7 @@ export default {
   },
 
   generateDays(curYear, curPeriod) {
-    let month = curPeriod * 3 - 1; // tháng bắt đầu từ 0 - 11
+    let month = curPeriod * 3; // tháng bắt đầu từ 0 - 11
     const days = [];
 
     for (let i = 0; i < 3; i++) {
@@ -48,7 +48,7 @@ export default {
         .month(month)
         .date(1)
         .startOf('month')
-        .day('Friday');
+        .day('Tuesday');
 
       // .day('Monday') có thể bị lùi về tháng trước đó nên phải cộng 7 ngày
       if (monday.date() > 7) monday.add(7, 'd');
@@ -128,22 +128,22 @@ export default {
     const checkIn = data[0].timeInSecs;
     const checkOut = data.at(-1).timeInSecs;
 
-    let status;
-    if (checkIn <= start) {
-      if (checkOut !== checkIn && checkOut <= end) {
-        status = 2; // về sớm
-      } else {
-        status = 5; // đúng giờ
-      }
-    } else if (checkIn <= end) {
-      if (checkOut !== checkIn && checkOut <= end) {
-        status = 3; // đi muộn, về sớm
-      } else {
-        status = 1; // đi muộn
-      }
-    } else {
-      status = 4; // nghỉ
-    }
+    let status = 5;
+    // if (checkIn <= start) {
+    //   if (checkOut !== checkIn && checkOut <= end) {
+    //     status = 2; // về sớm
+    //   } else {
+    //     status = 5; // đúng giờ
+    //   }
+    // } else if (checkIn <= end) {
+    //   if (checkOut !== checkIn && checkOut <= end) {
+    //     status = 3; // đi muộn, về sớm
+    //   } else {
+    //     status = 1; // đi muộn
+    //   }
+    // } else {
+    //   status = 4; // nghỉ
+    // }
     return {
       status,
       checkIn: this.convertSecsToHour(checkIn),
